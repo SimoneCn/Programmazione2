@@ -15,6 +15,16 @@ class LinkedList:
         self.__testa = nuovo
         self.__size += 1
 
+    #Aggiunto il metodo di ricerca
+    def search(self, valore):
+        corrente = self.__testa
+        while corrente is not None:
+            if corrente.valore == valore:
+                return True
+            corrente = corrente.next
+        return False
+
+
     def insertLast(self, valore):
         nuovo = Nodo(valore)
         if self.__testa is None:
@@ -97,29 +107,3 @@ class LinkedList:
             elementi.append(str(corrente.valore))
             corrente = corrente.next
         return "LinkedList([" + " → ".join(elementi) + "])"
-
-lista=LinkedList()
-#1. Registra in ordine le prime modifiche: "admin", "mario", "sara"
-lista.insertLast("admin")
-lista.insertLast("Mario")
-lista.insertLast("Sara")
-#2. Stampa la cronologia
-print(lista)
-#3. "guest" ha modificato il file dopo "mario" — inseriscilo nella posizione corretta
-lista.insertAfter("Mario","Guest")
-print(lista)
-#5. "root" ha modificato il file per primo — inseriscilo prima di "admin"
-lista.insertFirst("root")
-print(lista)
-#7. "luca" ha modificato il file prima di "sara" — inseriscilo nella posizione corretta
-lista.insertBefore("Sara","Luca")
-#9. La modifica più vecchia è stata archiviata — rimuovi il primo elemento
-lista.removeFirst()
-print(lista)
-#11. L'ultima modifica è stata annullata — rimuovi l'ultimo elemento
-lista.removeLast()
-print(lista)
-#13. Stampa quante modifiche sono registrate
-print(f"Sono state registrate {lista.size()} modifiche")
-#14. Stampa chi ha effettuato la modifica più recente da processare senza rimuoverlo
-print(f"{lista.peekFirst()} ha effettuato la modifica più recente!")
